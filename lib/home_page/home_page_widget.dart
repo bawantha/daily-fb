@@ -2,6 +2,7 @@ import '../backend/api_requests/api_calls.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomePageWidget extends StatefulWidget {
@@ -45,30 +46,33 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         r'''$.response''',
                       )?.toList() ??
                       [];
-                  return Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: List.generate(response.length, (responseIndex) {
-                      final responseItem = response[responseIndex];
-                      return Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height * 0.1,
-                          decoration: BoxDecoration(),
-                          child: Card(
-                            clipBehavior: Clip.antiAliasWithSaveLayer,
-                            color: Color(0xFFF5F5F5),
-                            child: Text(
-                              getJsonField(
-                                responseItem,
-                                r'''$.title''',
-                              ).toString(),
-                              style: FlutterFlowTheme.bodyText1,
+                  return SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(response.length, (responseIndex) {
+                        final responseItem = response[responseIndex];
+                        return Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height * 0.3,
+                            decoration: BoxDecoration(),
+                            child: Card(
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              color: Color(0xFFF5F5F5),
+                              child: Html(
+                                data: getJsonField(
+                                  responseItem,
+                                  r'''$.videos[0].embed''',
+                                ).toString(),
+                              ),
                             ),
                           ),
-                        ),
-                      );
-                    }),
+                        );
+                      }),
+                    ),
                   );
                 },
               );
