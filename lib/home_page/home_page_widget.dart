@@ -37,32 +37,39 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ),
                 );
               }
-              final listViewDailyfbResponse = snapshot.data;
-              return ListView(
-                padding: EdgeInsets.zero,
-                scrollDirection: Axis.vertical,
-                children: [
-                  ListTile(
-                    title: Text(
-                      getJsonField(
-                        (listViewDailyfbResponse?.jsonBody ?? ''),
-                        r'''$.response[:].title''',
-                      ).toString(),
-                      style: FlutterFlowTheme.title3,
-                    ),
-                    subtitle: Text(
-                      'Lorem ipsum dolor...',
-                      style: FlutterFlowTheme.subtitle2,
-                    ),
-                    trailing: Icon(
-                      Icons.arrow_forward_ios,
-                      color: Color(0xFF303030),
-                      size: 20,
-                    ),
-                    tileColor: Color(0xFFF5F5F5),
-                    dense: false,
-                  ),
-                ],
+              final columnDailyfbResponse = snapshot.data;
+              return Builder(
+                builder: (context) {
+                  final title = DailyfbCall.titlle(
+                        (columnDailyfbResponse?.jsonBody ?? ''),
+                      )?.toList() ??
+                      [];
+                  return Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: List.generate(title.length, (titleIndex) {
+                      final titleItem = title[titleIndex];
+                      return Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height * 0.1,
+                          decoration: BoxDecoration(),
+                          child: Card(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: Color(0xFFF5F5F5),
+                            child: Text(
+                              getJsonField(
+                                titleItem,
+                                r'''$.title''',
+                              ).toString(),
+                              style: FlutterFlowTheme.bodyText1,
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
+                  );
+                },
               );
             },
           ),

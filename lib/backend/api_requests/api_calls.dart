@@ -20,4 +20,8 @@ class DailyfbCall {
         response,
         r'''$.response[:].competition''',
       );
+  static dynamic titlle(dynamic response) => getJsonField(
+        response,
+        r'''$.response[:].title''',
+      );
 }
