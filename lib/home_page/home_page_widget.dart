@@ -40,14 +40,15 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               final columnDailyfbResponse = snapshot.data;
               return Builder(
                 builder: (context) {
-                  final title = DailyfbCall.titlle(
+                  final response = getJsonField(
                         (columnDailyfbResponse?.jsonBody ?? ''),
+                        r'''$.response''',
                       )?.toList() ??
                       [];
                   return Column(
                     mainAxisSize: MainAxisSize.max,
-                    children: List.generate(title.length, (titleIndex) {
-                      final titleItem = title[titleIndex];
+                    children: List.generate(response.length, (responseIndex) {
+                      final responseItem = response[responseIndex];
                       return Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
                         child: Container(
@@ -59,7 +60,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             color: Color(0xFFF5F5F5),
                             child: Text(
                               getJsonField(
-                                titleItem,
+                                responseItem,
                                 r'''$.title''',
                               ).toString(),
                               style: FlutterFlowTheme.bodyText1,
