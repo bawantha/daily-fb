@@ -67,7 +67,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             ),
                             alignment: AlignmentDirectional(0, 0),
                             child: Text(
-                              videoListIndex.toString(),
+                              getJsonField(
+                                videoListItem,
+                                r'''$''',
+                              ).toString(),
                               style: FlutterFlowTheme.of(context).bodyText1,
                             ),
                           ),
