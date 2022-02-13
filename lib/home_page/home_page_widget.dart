@@ -51,31 +51,33 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           r'''$.response[:].videos[:].embed''',
                         )?.toList() ??
                         [];
-                    return Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children:
-                          List.generate(videoList.length, (videoListIndex) {
-                        final videoListItem = videoList[videoListIndex];
-                        return Padding(
-                          padding:
-                              EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              color: Color(0xFFCDB4DB),
+                    return SingleChildScrollView(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children:
+                            List.generate(videoList.length, (videoListIndex) {
+                          final videoListItem = videoList[videoListIndex];
+                          return Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFCDB4DB),
+                              ),
+                              alignment: AlignmentDirectional(0, 0),
+                              child: Text(
+                                getJsonField(
+                                  videoListItem,
+                                  r'''$''',
+                                ).toString(),
+                                style: FlutterFlowTheme.of(context).bodyText1,
+                              ),
                             ),
-                            alignment: AlignmentDirectional(0, 0),
-                            child: Text(
-                              getJsonField(
-                                videoListItem,
-                                r'''$''',
-                              ).toString(),
-                              style: FlutterFlowTheme.of(context).bodyText1,
-                            ),
-                          ),
-                        );
-                      }),
+                          );
+                        }),
+                      ),
                     );
                   },
                 );
