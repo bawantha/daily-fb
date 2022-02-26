@@ -14,10 +14,16 @@ String getUrlFromDIv(String rawData) {
 }
 
 List<String> getUniqueCompetitionInTime(dynamic dataList) {
-  return dataList['response']
-      .map((element) {
-        return element["key"].toString();
+  // print(dataList['response']);
+  // return ["a"];
+  List<dynamic> data = dataList['response'];
+
+  List<String> vv = data
+      .map((e) {
+        return e["competition"].toString();
       })
       .toSet()
       .toList();
+
+  return vv;
 }
