@@ -60,6 +60,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           decoration: BoxDecoration(
                             color: Color(0xFFEEEEEE),
                           ),
+                          child: Text(
+                            competitionsItem,
+                            style: FlutterFlowTheme.of(context).bodyText1,
+                          ),
                         );
                       }),
                     ),
