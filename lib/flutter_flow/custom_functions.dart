@@ -5,6 +5,8 @@ import 'package:intl/intl.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'lat_lng.dart';
 import 'place.dart';
+import '../backend/backend.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 String getUrlFromDIv(String rawData) {
   RegExp exp = RegExp(
@@ -26,4 +28,8 @@ List<String> getUniqueCompetitionInTime(dynamic dataList) {
       .toList();
 
   return vv;
+}
+
+List<MatchRecord> generateMatchListFromJsonList(dynamic jsonData) {
+  return [MatchRecord()];
 }

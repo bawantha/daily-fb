@@ -1,4 +1,4 @@
-package com.bawantha.dailyfb
+package com.bawwasoft.dailyfb
 
 import io.flutter.embedding.android.FlutterActivity
 
