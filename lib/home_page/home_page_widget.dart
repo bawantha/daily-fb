@@ -2,6 +2,7 @@ import '../backend/api_requests/api_calls.dart';
 import '../components/filter_pannel_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -113,7 +114,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         10, 10, 10, 10),
-                                    child: Text(
+                                    child: AutoSizeText(
                                       getJsonField(
                                         matchListItem,
                                         r'''$.title''',
@@ -125,7 +126,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         5, 5, 5, 5),
-                                    child: Text(
+                                    child: AutoSizeText(
                                       getJsonField(
                                         matchListItem,
                                         r'''$.competition''',
