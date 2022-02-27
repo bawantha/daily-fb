@@ -98,7 +98,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   await Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => VideoPageWidget(),
+                                      builder: (context) => VideoPageWidget(
+                                        selectedMatch: matchListItem,
+                                      ),
                                     ),
                                   );
                                 },
@@ -114,10 +116,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         color: Color(0xFFEEEEEE),
                                       ),
                                       child: Hero(
-                                        tag: 'header',
+                                        tag: getJsonField(
+                                          matchListItem,
+                                          r'''$.thumbnail''',
+                                        ),
                                         transitionOnUserGestures: true,
                                         child: Image.network(
-                                          'https://picsum.photos/seed/679/600',
+                                          getJsonField(
+                                            matchListItem,
+                                            r'''$.thumbnail''',
+                                          ),
                                           width:
                                               MediaQuery.of(context).size.width,
                                           height: MediaQuery.of(context)

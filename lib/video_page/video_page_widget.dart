@@ -5,7 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class VideoPageWidget extends StatefulWidget {
-  const VideoPageWidget({Key key}) : super(key: key);
+  const VideoPageWidget({
+    Key key,
+    this.selectedMatch,
+  }) : super(key: key);
+
+  final dynamic selectedMatch;
 
   @override
   _VideoPageWidgetState createState() => _VideoPageWidgetState();
@@ -35,10 +40,16 @@ class _VideoPageWidgetState extends State<VideoPageWidget> {
                       Align(
                         alignment: AlignmentDirectional(0, 0),
                         child: Hero(
-                          tag: 'header',
+                          tag: getJsonField(
+                            widget.selectedMatch,
+                            r'''$.thumbnail''',
+                          ),
                           transitionOnUserGestures: true,
                           child: CachedNetworkImage(
-                            imageUrl: '',
+                            imageUrl: getJsonField(
+                              widget.selectedMatch,
+                              r'''$.thumbnail''',
+                            ),
                             width: MediaQuery.of(context).size.width,
                             height: 240,
                             fit: BoxFit.cover,
