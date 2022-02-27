@@ -110,6 +110,30 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       fit: BoxFit.cover,
                                     ),
                                   ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10, 10, 10, 10),
+                                    child: Text(
+                                      getJsonField(
+                                        matchListItem,
+                                        r'''$.title''',
+                                      ).toString(),
+                                      style:
+                                          FlutterFlowTheme.of(context).title1,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        5, 5, 5, 5),
+                                    child: Text(
+                                      getJsonField(
+                                        matchListItem,
+                                        r'''$.competition''',
+                                      ).toString(),
+                                      style:
+                                          FlutterFlowTheme.of(context).title3,
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
