@@ -69,26 +69,30 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         r'''$.response[:]''',
                       )?.toList() ??
                       [];
-                  return Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: List.generate(matchList.length, (matchListIndex) {
-                      final matchListItem = matchList[matchListIndex];
-                      return Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height * 0.25,
-                          decoration: BoxDecoration(),
-                          child: Card(
-                            clipBehavior: Clip.antiAliasWithSaveLayer,
-                            color: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
+                  return SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children:
+                          List.generate(matchList.length, (matchListIndex) {
+                        final matchListItem = matchList[matchListIndex];
+                        return Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height * 0.25,
+                            decoration: BoxDecoration(),
+                            child: Card(
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              color: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
                             ),
                           ),
-                        ),
-                      );
-                    }),
+                        );
+                      }),
+                    ),
                   );
                 },
               );
