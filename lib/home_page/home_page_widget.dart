@@ -31,7 +31,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               return Padding(
                 padding: MediaQuery.of(context).viewInsets,
                 child: Container(
-                  height: MediaQuery.of(context).size.height * 0.3,
+                  height: MediaQuery.of(context).size.height * 0.25,
                   child: FilterPannelWidget(),
                 ),
               );
