@@ -52,7 +52,7 @@ class _VideoPageWidgetState extends State<VideoPageWidget> {
                               r'''$.thumbnail''',
                             ),
                             width: MediaQuery.of(context).size.width,
-                            height: 240,
+                            height: MediaQuery.of(context).size.height * 0.3,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -91,7 +91,7 @@ class _VideoPageWidgetState extends State<VideoPageWidget> {
           ),
           Container(
             width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 1,
+            height: MediaQuery.of(context).size.height * 0.7,
             decoration: BoxDecoration(),
             child: Builder(
               builder: (context) {
