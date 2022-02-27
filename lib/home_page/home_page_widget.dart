@@ -116,14 +116,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       matchListItem,
                                       r'''$.title''',
                                     ).toString(),
-                                    style: FlutterFlowTheme.of(context).title1,
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        FlutterFlowTheme.of(context).subtitle2,
                                   ),
                                   AutoSizeText(
                                     getJsonField(
                                       matchListItem,
                                       r'''$.competition''',
                                     ).toString(),
-                                    style: FlutterFlowTheme.of(context).title3,
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyText1,
                                   ),
                                 ],
                               ),
