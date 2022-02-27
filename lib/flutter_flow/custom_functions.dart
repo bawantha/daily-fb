@@ -34,8 +34,15 @@ List<MatchRecord> generateMatchListFromJsonList(dynamic jsonData) {
   return [MatchRecord()];
 }
 
-List<String> generateYoutubeLinks(dynamic rawData) {
+Future<List<Map<String, String>>> generateYoutubeLinks(dynamic rawData) async {
   List<String> urls = [];
   urls.add("https://www.youtube.com/watch?v=41qC3w3UUkU");
-  return urls;
+  return Future.delayed(
+    Duration(seconds: 2),
+    () {
+      List<Map<String, String>> val = [];
+      val.add({"aaa": "https://www.youtube.com/watch?v=41qC3w3UUkU"});
+      return val;
+    },
+  );
 }
