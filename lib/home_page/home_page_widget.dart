@@ -2,6 +2,7 @@ import '../backend/api_requests/api_calls.dart';
 import '../components/filter_pannel_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../video_page/video_page_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -92,45 +93,61 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Container(
-                                    width: MediaQuery.of(context).size.width,
-                                    height: MediaQuery.of(context).size.height *
-                                        0.15,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFFEEEEEE),
+                              child: InkWell(
+                                onTap: () async {
+                                  await Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => VideoPageWidget(),
                                     ),
-                                    child: Image.network(
+                                  );
+                                },
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.15,
+                                      decoration: BoxDecoration(
+                                        color: Color(0xFFEEEEEE),
+                                      ),
+                                      child: Hero(
+                                        tag: 'header',
+                                        transitionOnUserGestures: true,
+                                        child: Image.network(
+                                          'https://picsum.photos/seed/679/600',
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              1,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    AutoSizeText(
                                       getJsonField(
                                         matchListItem,
-                                        r'''$.thumbnail''',
-                                      ),
-                                      width: 100,
-                                      height: 100,
-                                      fit: BoxFit.cover,
+                                        r'''$.title''',
+                                      ).toString(),
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .subtitle2,
                                     ),
-                                  ),
-                                  AutoSizeText(
-                                    getJsonField(
-                                      matchListItem,
-                                      r'''$.title''',
-                                    ).toString(),
-                                    textAlign: TextAlign.center,
-                                    style:
-                                        FlutterFlowTheme.of(context).subtitle2,
-                                  ),
-                                  AutoSizeText(
-                                    getJsonField(
-                                      matchListItem,
-                                      r'''$.competition''',
-                                    ).toString(),
-                                    textAlign: TextAlign.center,
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyText1,
-                                  ),
-                                ],
+                                    AutoSizeText(
+                                      getJsonField(
+                                        matchListItem,
+                                        r'''$.competition''',
+                                      ).toString(),
+                                      textAlign: TextAlign.center,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyText1,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
