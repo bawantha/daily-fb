@@ -1,5 +1,6 @@
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/custom_functions.dart' as functions;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -87,6 +88,48 @@ class _VideoPageWidgetState extends State<VideoPageWidget> {
                 ),
               ),
             ],
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 1,
+            decoration: BoxDecoration(),
+            child: Builder(
+              builder: (context) {
+                final video = functions
+                        .generateYoutubeLinks(widget.selectedMatch)
+                        ?.toList() ??
+                    [];
+                return SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: List.generate(video.length, (videoIndex) {
+                      final videoItem = video[videoIndex];
+                      return Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.2,
+                        decoration: BoxDecoration(),
+                        child: Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                          child: Card(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: Colors.white,
+                            elevation: 10,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Text(
+                              videoItem,
+                              style: FlutterFlowTheme.of(context).bodyText1,
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
+                  ),
+                );
+              },
+            ),
           ),
         ],
       ),
