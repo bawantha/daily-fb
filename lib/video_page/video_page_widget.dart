@@ -107,7 +107,7 @@ class _VideoPageWidgetState extends State<VideoPageWidget> {
                       final videoItem = video[videoIndex];
                       return Container(
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.3,
+                        height: MediaQuery.of(context).size.height * 0.32,
                         decoration: BoxDecoration(),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -116,24 +116,20 @@ class _VideoPageWidgetState extends State<VideoPageWidget> {
                               'Hello World',
                               style: FlutterFlowTheme.of(context).title3,
                             ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  10, 10, 10, 10),
-                              child: Card(
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                color: Colors.white,
-                                elevation: 10,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: FlutterFlowYoutubePlayer(
-                                  url: videoItem,
-                                  autoPlay: false,
-                                  looping: true,
-                                  mute: false,
-                                  showControls: true,
-                                  showFullScreen: true,
-                                ),
+                            Card(
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              color: Colors.white,
+                              elevation: 10,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: FlutterFlowYoutubePlayer(
+                                url: videoItem,
+                                autoPlay: false,
+                                looping: true,
+                                mute: false,
+                                showControls: true,
+                                showFullScreen: true,
                               ),
                             ),
                           ],
