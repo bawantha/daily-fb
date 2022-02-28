@@ -112,27 +112,31 @@ class _VideoPageWidgetState extends State<VideoPageWidget> {
                           final videoItem = snapshot.data[videoIndex];
                           return Container(
                             width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height * 0.2,
+                            height: MediaQuery.of(context).size.height * 0.32,
                             decoration: BoxDecoration(),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  10, 10, 10, 10),
-                              child: Card(
-                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                color: Colors.white,
-                                elevation: 10,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
+                            child: Column(
+                              children: [
+                                Text(
+                                  'Hello World',
+                                  style: FlutterFlowTheme.of(context).title3,
                                 ),
-                                child: FlutterFlowYoutubePlayer(
-                                  url: videoItem.values.first,
-                                  autoPlay: false,
-                                  looping: true,
-                                  mute: false,
-                                  showControls: true,
-                                  showFullScreen: true,
+                                Card(
+                                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                                  color: Colors.white,
+                                  elevation: 10,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: FlutterFlowYoutubePlayer(
+                                    url: videoItem.values.first,
+                                    autoPlay: false,
+                                    looping: true,
+                                    mute: false,
+                                    showControls: true,
+                                    showFullScreen: true,
+                                  ),
                                 ),
-                              ),
+                              ],
                             ),
                           );
                         },
