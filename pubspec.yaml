@@ -44,6 +44,9 @@ dependencies:
   timeago: 3.1.0
   url_launcher: 6.0.15
   youtube_plyr_iframe: 2.0.7
+  dependencies:
+  http: any
+
 
 
   # The following adds the Cupertino Icons font to your application.

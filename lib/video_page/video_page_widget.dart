@@ -55,6 +55,8 @@ class _VideoPageWidgetState extends State<VideoPageWidget> {
                             width: MediaQuery.of(context).size.width,
                             height: MediaQuery.of(context).size.height * 0.3,
                             fit: BoxFit.cover,
+                            errorWidget: (context, url, error) =>
+                                new Icon(Icons.error),
                           ),
                         ),
                       ),

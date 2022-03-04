@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+
 import '../backend/api_requests/api_calls.dart';
 import '../components/filter_pannel_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -121,8 +123,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           r'''$.thumbnail''',
                                         ),
                                         transitionOnUserGestures: true,
-                                        child: Image.network(
-                                          getJsonField(
+                                        child: CachedNetworkImage(
+                                          imageUrl: getJsonField(
                                             matchListItem,
                                             r'''$.thumbnail''',
                                           ),
@@ -133,6 +135,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                   .height *
                                               1,
                                           fit: BoxFit.cover,
+                                          errorWidget: (context, url, error) =>
+                                              new Icon(Icons.error),
                                         ),
                                       ),
                                     ),
