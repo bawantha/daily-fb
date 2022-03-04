@@ -7,6 +7,7 @@ import 'lat_lng.dart';
 import 'place.dart';
 import '../backend/backend.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../auth/auth_util.dart';
 
 String getUrlFromDIv(String rawData) {
   RegExp exp = RegExp(

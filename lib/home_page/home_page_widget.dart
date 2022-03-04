@@ -1,11 +1,10 @@
 import '../backend/api_requests/api_calls.dart';
-import '../components/filter_pannel_widget.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../video_page/video_page_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomePageWidget extends StatefulWidget {
@@ -23,31 +22,6 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Color(0xFFCFD8DC),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          await showModalBottomSheet(
-            isScrollControlled: true,
-            backgroundColor: Colors.transparent,
-            context: context,
-            builder: (context) {
-              return Padding(
-                padding: MediaQuery.of(context).viewInsets,
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.25,
-                  child: FilterPannelWidget(),
-                ),
-              );
-            },
-          );
-        },
-        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
-        elevation: 8,
-        child: FaIcon(
-          FontAwesomeIcons.filter,
-          color: FlutterFlowTheme.of(context).tertiaryColor,
-          size: 24,
-        ),
-      ),
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
@@ -121,8 +95,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           r'''$.thumbnail''',
                                         ),
                                         transitionOnUserGestures: true,
-                                        child: Image.network(
-                                          getJsonField(
+                                        child: CachedNetworkImage(
+                                          imageUrl: getJsonField(
                                             matchListItem,
                                             r'''$.thumbnail''',
                                           ),
