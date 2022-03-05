@@ -81,6 +81,14 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                                     ),
                                     child: CachedNetworkImage(
                                       imageUrl: currentUserPhoto,
+                                      errorWidget: (context, url, error) =>
+                                          CircleAvatar(
+                                        backgroundColor: Colors.black,
+                                        child: Icon(
+                                          Icons.person,
+                                          color: Colors.white,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
