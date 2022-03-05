@@ -292,7 +292,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
             Expanded(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   FFButtonWidget(
                     onPressed: () async {
@@ -328,39 +329,30 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                       borderRadius: 40,
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 24),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        FlutterFlowIconButton(
-                          borderColor: Colors.transparent,
-                          borderRadius: 30,
-                          borderWidth: 1,
-                          buttonSize: 50,
-                          fillColor: Color(0xFFDBE2E7),
-                          icon: FaIcon(
-                            FontAwesomeIcons.google,
-                            color: Color(0xFF57636C),
-                            size: 20,
-                          ),
-                          onPressed: () async {
-                            final user = await signInWithGoogle(context);
-                            if (user == null) {
-                              return;
-                            }
-                            await Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => HomePageWidget(),
-                              ),
-                              (r) => false,
-                            );
-                          },
-                        ),
-                      ],
+                  FlutterFlowIconButton(
+                    borderColor: Colors.transparent,
+                    borderRadius: 30,
+                    borderWidth: 1,
+                    buttonSize: 50,
+                    fillColor: Color(0xFFDBE2E7),
+                    icon: FaIcon(
+                      FontAwesomeIcons.google,
+                      color: Color(0xFF57636C),
+                      size: 20,
                     ),
+                    onPressed: () async {
+                      final user = await signInWithGoogle(context);
+                      if (user == null) {
+                        return;
+                      }
+                      await Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HomePageWidget(),
+                        ),
+                        (r) => false,
+                      );
+                    },
                   ),
                 ],
               ),
