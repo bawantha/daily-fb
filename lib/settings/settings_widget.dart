@@ -21,35 +21,31 @@ class _SettingsWidgetState extends State<SettingsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<InfoRecord>>(
-      future: queryInfoRecordOnce(
-        singleRecord: true,
-      ),
-      builder: (context, snapshot) {
-        // Customize what your widget looks like when it's loading.
-        if (!snapshot.hasData) {
-          return Center(
-            child: SizedBox(
-              width: 50,
-              height: 50,
-              child: CircularProgressIndicator(
-                color: FlutterFlowTheme.of(context).primaryColor,
+    return Scaffold(
+      key: scaffoldKey,
+      backgroundColor: Color(0xFFF1F4F8),
+      body: FutureBuilder<List<InfoRecord>>(
+        future: queryInfoRecordOnce(
+          singleRecord: true,
+        ),
+        builder: (context, snapshot) {
+          // Customize what your widget looks like when it's loading.
+          if (!snapshot.hasData) {
+            return Center(
+              child: SizedBox(
+                width: 50,
+                height: 50,
+                child: CircularProgressIndicator(
+                  color: FlutterFlowTheme.of(context).primaryColor,
+                ),
               ),
-            ),
-          );
-        }
-        List<InfoRecord> settingsInfoRecordList = snapshot.data;
-        // Return an empty Container when the document does not exist.
-        if (snapshot.data.isEmpty) {
-          return Container();
-        }
-        final settingsInfoRecord = settingsInfoRecordList.isNotEmpty
-            ? settingsInfoRecordList.first
-            : null;
-        return Scaffold(
-          key: scaffoldKey,
-          backgroundColor: Color(0xFFF1F4F8),
-          body: Column(
+            );
+          }
+          List<InfoRecord> columnInfoRecordList = snapshot.data;
+          final columnInfoRecord = columnInfoRecordList.isNotEmpty
+              ? columnInfoRecordList.first
+              : null;
+          return Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -182,8 +178,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             ),
                             child: InkWell(
                               onTap: () async {
-                                await launchURL(
-                                    settingsInfoRecord.playStoreLink);
+                                await launchURL(columnInfoRecord.playStoreLink);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -235,7 +230,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             child: InkWell(
                               onTap: () async {
                                 await Share.share(
-                                    settingsInfoRecord.shareMessage);
+                                    columnInfoRecord.shareMessage);
                               },
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
@@ -317,9 +312,9 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                 ),
               ),
             ],
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }
