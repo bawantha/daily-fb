@@ -4,45 +4,45 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import '../flutter_flow/flutter_flow_util.dart';
 
-import 'schema/match_record.dart';
-import 'schema/videos_record.dart';
+import 'schema/user_record.dart';
+import 'schema/info_record.dart';
 import 'schema/serializers.dart';
 
 export 'package:cloud_firestore/cloud_firestore.dart';
 export 'schema/index.dart';
 export 'schema/serializers.dart';
 
-export 'schema/match_record.dart';
-export 'schema/videos_record.dart';
+export 'schema/user_record.dart';
+export 'schema/info_record.dart';
 
-/// Functions to query MatchRecords (as a Stream and as a Future).
-Stream<List<MatchRecord>> queryMatchRecord(
+/// Functions to query UserRecords (as a Stream and as a Future).
+Stream<List<UserRecord>> queryUserRecord(
         {Query Function(Query) queryBuilder,
         int limit = -1,
         bool singleRecord = false}) =>
-    queryCollection(MatchRecord.collection, MatchRecord.serializer,
+    queryCollection(UserRecord.collection, UserRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
-Future<List<MatchRecord>> queryMatchRecordOnce(
+Future<List<UserRecord>> queryUserRecordOnce(
         {Query Function(Query) queryBuilder,
         int limit = -1,
         bool singleRecord = false}) =>
-    queryCollectionOnce(MatchRecord.collection, MatchRecord.serializer,
+    queryCollectionOnce(UserRecord.collection, UserRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
-/// Functions to query VideosRecords (as a Stream and as a Future).
-Stream<List<VideosRecord>> queryVideosRecord(
+/// Functions to query InfoRecords (as a Stream and as a Future).
+Stream<List<InfoRecord>> queryInfoRecord(
         {Query Function(Query) queryBuilder,
         int limit = -1,
         bool singleRecord = false}) =>
-    queryCollection(VideosRecord.collection, VideosRecord.serializer,
+    queryCollection(InfoRecord.collection, InfoRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
-Future<List<VideosRecord>> queryVideosRecordOnce(
+Future<List<InfoRecord>> queryInfoRecordOnce(
         {Query Function(Query) queryBuilder,
         int limit = -1,
         bool singleRecord = false}) =>
-    queryCollectionOnce(VideosRecord.collection, VideosRecord.serializer,
+    queryCollectionOnce(InfoRecord.collection, InfoRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
 Stream<List<T>> queryCollection<T>(
@@ -85,4 +85,24 @@ Future<List<T>> queryCollectionOnce<T>(
       )
       .where((d) => d != null)
       .toList());
+}
+
+// Creates a Firestore record representing the logged in user if it doesn't yet exist
+Future maybeCreateUser(User user) async {
+  final userRecord = UserRecord.collection.doc(user.uid);
+  final userExists = await userRecord.get().then((u) => u.exists);
+  if (userExists) {
+    return;
+  }
+
+  final userData = createUserRecordData(
+    email: user.email,
+    displayName: user.displayName,
+    photoUrl: user.photoURL,
+    uid: user.uid,
+    phoneNumber: user.phoneNumber,
+    createdTime: getCurrentTimestamp,
+  );
+
+  await userRecord.set(userData);
 }

@@ -134,6 +134,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                       controller: emailAddressController,
                       obscureText: false,
                       decoration: InputDecoration(
+                        labelText: 'Your email address...',
                         labelStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
                                   fontFamily: 'Lexend Deca',
@@ -141,6 +142,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
                                 ),
+                        hintText: 'Enter your email...',
                         hintStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
                                   fontFamily: 'Lexend Deca',
@@ -181,6 +183,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                       controller: passwordController,
                       obscureText: !passwordVisibility,
                       decoration: InputDecoration(
+                        labelText: 'Password',
                         labelStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
                                   fontFamily: 'Lexend Deca',
@@ -188,6 +191,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
                                 ),
+                        hintText: 'Enter your email...',
                         hintStyle:
                             FlutterFlowTheme.of(context).bodyText1.override(
                                   fontFamily: 'Lexend Deca',

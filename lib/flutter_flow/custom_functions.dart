@@ -31,10 +31,6 @@ List<String> getUniqueCompetitionInTime(dynamic dataList) {
   return vv;
 }
 
-List<MatchRecord> generateMatchListFromJsonList(dynamic jsonData) {
-  return [MatchRecord()];
-}
-
 List<String> generateYoutubeLinks(dynamic rawData) {
   List<String> urls = [];
   urls.add("https://www.youtube.com/watch?v=41qC3w3UUkU");
