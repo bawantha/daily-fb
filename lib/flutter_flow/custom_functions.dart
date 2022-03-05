@@ -32,39 +32,28 @@ List<String> getUniqueCompetitionInTime(dynamic dataList) {
   return vv;
 }
 
-List<MatchRecord> generateMatchListFromJsonList(dynamic jsonData) {
-  return [MatchRecord()];
-}
-
 Future<String> getDataOfUrl(String url) async {
   final res = await http.get(Uri.parse(url));
+
   return res.body.toString();
 }
 
 Future<List<Map<String, String>>> generateYoutubeLinks(dynamic rawData) async {
   List<dynamic> videos = rawData['videos'];
-  List<String> urls = [];
-  final String link = await _getYTLink(videos.first['embed']);
-  print(link);
-  urls.add("https://www.youtube.com/watch?v=41qC3w3UUkU");
-  return Future.delayed(
-    Duration(seconds: 2),
-    () {
-      List<Map<String, String>> val = [];
-      val.add({"aaa": link});
-      return val;
-    },
-  );
+  List<Map<String, String>> data = [];
+  final List<String> urls = await Future.wait(
+      videos.map((e) async => await _getYTLink(e['embed'])).toList());
+
+  for (int i = 0; i < urls.length; i++) {
+    data.add({videos[i]['title'].toString(): urls[i].toString()});
+  }
+
+  return data;
 }
 
 Future<String> _getYTLink(String data) async {
   String ytLink;
   try {
-    // data.extractScoreBatURlFromDive()!.getFromURL().then((value) => value
-    //     .toString()
-    //     .extractCloudFrontURlFromDive()!
-    //     .getFromURL()
-    //     .then((e) => ytLink = e!.getYTLink()));
     String sbURL = data.extractScoreBatURlFromDive();
     if (sbURL != null) {
       final String dataFromScoreBat = await sbURL.getFromURL();
@@ -83,7 +72,9 @@ Future<String> _getYTLink(String data) async {
             ytLink = null;
           }
         } else {
-          ytLink = null;
+          String link = dataFromScoreBat.exTractuYTLinkDirect();
+
+          ytLink = link;
         }
       } else {
         ytLink = null;
@@ -132,6 +123,24 @@ https?:\/\/(.+?\.)?scorebat\.com(\/[A-Za-z0-9\-\._~:\/\?#\[\]@!$&'\(\)\*\+,;\=]*
   }
 
   String getYTLink() {
+    try {
+      RegExp exp2 = RegExp(
+          r"https?:\/\/(.+?\.)?img.youtube\.com(\/[A-Za-z0-9\-\._~:\/\?#\[\]@!$&'\(\)\*\+,;\=]*)(?=\))");
+      // RegExp exp = new RegExp(r"'https");
+      RegExpMatch matches2 = exp2.firstMatch(this);
+      String url2 = matches2.group(0);
+
+      RegExp exp3 = RegExp(r"(vi\/).*(?=\/)");
+      RegExpMatch matches3 = exp3.firstMatch(url2);
+      String videoID = matches3.group(0).substring(3);
+      String yt = "https://youtube.com/watch?v=" + videoID;
+      return yt;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  String exTractuYTLinkDirect() {
     try {
       RegExp exp2 = RegExp(
           r"https?:\/\/(.+?\.)?img.youtube\.com(\/[A-Za-z0-9\-\._~:\/\?#\[\]@!$&'\(\)\*\+,;\=]*)(?=\))");

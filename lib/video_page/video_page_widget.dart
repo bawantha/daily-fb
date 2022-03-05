@@ -112,6 +112,7 @@ class _VideoPageWidgetState extends State<VideoPageWidget> {
                         snapshot.data.length,
                         (videoIndex) {
                           final videoItem = snapshot.data[videoIndex];
+                          print(videoItem.toString());
                           return Container(
                             width: MediaQuery.of(context).size.width,
                             height: MediaQuery.of(context).size.height * 0.32,
@@ -119,7 +120,7 @@ class _VideoPageWidgetState extends State<VideoPageWidget> {
                             child: Column(
                               children: [
                                 Text(
-                                  'Hello World',
+                                  videoItem.keys.first,
                                   style: FlutterFlowTheme.of(context).title3,
                                 ),
                                 Card(
