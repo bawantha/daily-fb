@@ -7,8 +7,8 @@ import 'auth/auth_util.dart';
 
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/internationalization.dart';
-import 'package:daily_football/login_page/login_page_widget.dart';
-import 'package:daily_football/home_page/home_page_widget.dart';
+import 'package:ddofb/login_page/login_page_widget.dart';
+import 'package:ddofb/home_page/home_page_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 
 void main() async {
@@ -30,8 +30,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Locale _locale;
   ThemeMode _themeMode = ThemeMode.system;
-  Stream<DailyFootballFirebaseUser> userStream;
-  DailyFootballFirebaseUser initialUser;
+  Stream<DdofbFirebaseUser> userStream;
+  DdofbFirebaseUser initialUser;
   bool displaySplashImage = true;
   final authUserSub = authenticatedUserStream.listen((_) {});
 
@@ -43,7 +43,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    userStream = dailyFootballFirebaseUserStream()
+    userStream = ddofbFirebaseUserStream()
       ..listen((user) => initialUser ?? setState(() => initialUser = user));
     Future.delayed(
         Duration(seconds: 1), () => setState(() => displaySplashImage = false));
@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Daily Football',
+      title: 'DDOFB',
       localizationsDelegates: [
         FFLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
