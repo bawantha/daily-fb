@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "41997820918-o8iul7ha3scb5hf2tlvu7egqj6nl6to4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bawwasoft.dailyfb",
+            "certificate_hash": "cbab1092b9a7c161e97c38a6eb16682c22c39a44"
+          }
+        },
+        {
           "client_id": "41997820918-tqsdo789iu41ar627hmikoe1h664ncrd.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
